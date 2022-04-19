@@ -2454,11 +2454,13 @@ textarea.form-input {
 }
 
 .post-classic-figure img {
-	width: 100%;
+	width: 400px;
+	height: 330px;
 }
 
 .post-classic-figure + .post-classic-title {
 	margin-top: 33px;
+	text-align: center;
 }
 
 .post-classic-title + .post-classic-description {
@@ -4372,7 +4374,7 @@ html.tablet .ui-to-top {
 }
 
 .rd-navbar.rd-navbar-static.rd-navbar--is-stuck .rd-navbar-main, .rd-navbar.rd-navbar-static.rd-navbar--is-clone .rd-navbar-main {
-	padding: 17px 0;
+	padding: 13px 0;
 }
 
 .rd-navbar.rd-navbar-static.rd-navbar--is-stuck .rd-navbar-nav-item > .rd-navbar-submenu, .rd-navbar.rd-navbar-static.rd-navbar--is-clone .rd-navbar-nav-item > .rd-navbar-submenu {
@@ -4921,7 +4923,7 @@ html.tablet .ui-to-top {
 
 .rd-navbar-fixed .rd-navbar-brand img {
 	max-width: 160px;
-	max-height: 48px;
+	max-height: 47px;
 	width: auto;
 	height: auto;
 }
