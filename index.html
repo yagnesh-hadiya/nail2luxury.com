@@ -56,6 +56,37 @@
       html.lt-ie-10 .ie-panel {
         display: block;
       }
+
+      .navbar a:hover,
+      .dropdown:hover {
+        background-color: rgb(71, 69, 69);
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #2c2c2c;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+      }
+
+      .dropdown-content a {
+        float: none;
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: rgb(231 227 227 / 10%);
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -119,7 +150,21 @@
                       <a class="rd-nav-link" href="#about">About</a>
                     </li>
                     <li class="rd-nav-item">
-                      <a class="rd-nav-link" href="#Gallery">Gallery</a>
+                      <!-- <div class="navbar"> -->
+                      <div class="dropdown">
+                        <a class="rd-nav-link" href="#Gallery">Gallery</a>
+                        <i class="fa fa-caret-down"></i>
+                        <div class="dropdown-content">
+                          <a href="#Gallery">Bed Room</a>
+                          <a href="#Gallery">Modular Kitchen</a>
+                          <a href="#Gallery">Children Room</a>
+                          <a href="#contacts">Living Room</a>
+                          <a href="#Gallery">Dining Room</a>
+                          <a href="#Gallery">Pooja/Mandir Space</a>
+                          <a href="#Gallery">Office Space</a>
+                        </div>
+                      </div>
+                      <!-- </div> -->
                     </li>
                     <li class="rd-nav-item">
                       <a class="rd-nav-link" href="#contacts">Contacts</a>
@@ -657,7 +702,7 @@
                   <img src="images/bedroom1.jpeg" alt="Bedroom"
                 /></a>
               </div>
-              <h4 class="post-classic-title"><a href="#">Bedroom</a></h4>
+              <h4 class="post-classic-title"><a href="#">Bed Room</a></h4>
               <!-- <ul class="post-classic-description">
                 <li>2018</li>
                 <li>Residential</li>
