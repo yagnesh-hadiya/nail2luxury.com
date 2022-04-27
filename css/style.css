@@ -5870,6 +5870,17 @@ html.rd-navbar-fixed-linked header {
 	.kraken-range {
 		display: none;
 	}
+	.modal-window:target {
+		width: fit-content;
+	}
+	.modal-window > div {
+		top: 64px !important;
+		padding: 1rem !important;
+		width: auto !important;
+	}
+	.post-classic-figure img {
+		height: 230px !important;
+	}
 }
 
 .owl-carousel-range {
@@ -5877,9 +5888,10 @@ html.rd-navbar-fixed-linked header {
 }
 
 .modal-window {
+	overflow: scroll;
 	position: fixed;
 	background-color: #3f454b8a;
-	top: 0;
+	top: -35px;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -5928,4 +5940,49 @@ html.rd-navbar-fixed-linked header {
   .modal-window h1 {
 	font-size: 150%;
 	margin: 0 0 15px;
+  }
+  .ie-panel {
+	display: none;
+	background: #212121;
+	padding: 10px 0;
+	box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
+	clear: both;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+  }
+  html.ie-10 .ie-panel,
+  html.lt-ie-10 .ie-panel {
+	display: block;
+  }
+
+  .navbar a:hover,
+  .dropdown:hover {
+	background-color: rgb(71, 69, 69);
+  }
+
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #2c2c2c;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 999;
+  }
+
+  .dropdown-content a {
+	float: none;
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+  }
+
+  .dropdown-content a:hover {
+	background-color: rgb(231 227 227 / 10%);
+  }
+
+  .dropdown:hover .dropdown-content {
+	display: block;
   }
