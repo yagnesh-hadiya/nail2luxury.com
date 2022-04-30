@@ -24,7 +24,7 @@
 				owl: $(".owl-carousel"),
 				preloader: $(".preloader"),
 				rdNavbar: $(".rd-navbar"),
-				rdMailForm: $(".rd-mailform"),
+				// rdMailForm: $(".rd-mailform"),
 				rdInputLabel: $(".form-label"),
 				regula: $("[data-constraints]"),
 				wow: $(".wow")
@@ -35,27 +35,27 @@
 	 * @param {object} elem - jQuery object
 	 * @return {boolean}
 	 */
-	function isScrolledIntoView(elem) {
-		if (isNoviBuilder) return true;
-		return elem.offset().top + elem.outerHeight() >= $window.scrollTop() && elem.offset().top <= $window.scrollTop() + $window.height();
-	}
+	// function isScrolledIntoView(elem) {
+	// 	if (isNoviBuilder) return true;
+	// 	return elem.offset().top + elem.outerHeight() >= $window.scrollTop() && elem.offset().top <= $window.scrollTop() + $window.height();
+	// }
 
 	/**
 	 * @desc Calls a function when element has been scrolled into the view
 	 * @param {object} element - jQuery object
 	 * @param {function} func - init function
 	 */
-	function lazyInit(element, func) {
-		var scrollHandler = function () {
-			if (( !element.hasClass('lazy-loaded') && ( isScrolledIntoView(element) ) )) {
-				func.call();
-				element.addClass('lazy-loaded');
-			}
-		};
+	// function lazyInit(element, func) {
+	// 	var scrollHandler = function () {
+	// 		if (( !element.hasClass('lazy-loaded') && ( isScrolledIntoView(element) ) )) {
+	// 			func.call();
+	// 			element.addClass('lazy-loaded');
+	// 		}
+	// 	};
 
-		scrollHandler();
-		$window.on('scroll', scrollHandler);
-	}
+	// 	scrollHandler();
+	// 	$window.on('scroll', scrollHandler);
+	// }
 
 	// Initialize scripts that require a loaded page
 	$window.on('load', function () {
@@ -64,7 +64,7 @@
 			pageTransition({
 				target: document.querySelector('.page'),
 				delay: 0,
-				duration: 500,
+				// duration: 500, 
 				classIn: 'fadeIn',
 				classOut: 'fadeOut',
 				classActive: 'animated',
@@ -74,7 +74,7 @@
 				onTransitionStart: function (options) {
 					setTimeout(function () {
 						plugins.preloader.removeClass('loaded');
-					}, options.duration * .75);
+					}, options.duration * .25);
 				},
 				onReady: function () {
 					plugins.preloader.addClass('loaded');
@@ -161,68 +161,68 @@
 		 * @desc Attach form validation to elements
 		 * @param {object} elements - jQuery object
 		 */
-		function attachFormValidator(elements) {
-			// Custom validator - phone number
-			regula.custom({
-				name: 'PhoneNumber',
-				defaultMessage: 'Invalid phone number format',
-				validator: function () {
-					if (this.value === '') return true;
-					else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test(this.value);
-				}
-			});
+		// function attachFormValidator(elements) {
+		// 	// Custom validator - phone number
+		// 	regula.custom({
+		// 		name: 'PhoneNumber',
+		// 		defaultMessage: 'Invalid phone number format',
+		// 		validator: function () {
+		// 			if (this.value === '') return true;
+		// 			else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test(this.value);
+		// 		}
+		// 	});
 
-			for (var i = 0; i < elements.length; i++) {
-				var o = $(elements[i]), v;
-				o.addClass("form-control-has-validation").after("<span class='form-validation'></span>");
-				v = o.parent().find(".form-validation");
-				if (v.is(":last-child")) o.addClass("form-control-last-child");
-			}
+		// 	for (var i = 0; i < elements.length; i++) {
+		// 		var o = $(elements[i]), v;
+		// 		o.addClass("form-control-has-validation").after("<span class='form-validation'></span>");
+		// 		v = o.parent().find(".form-validation");
+		// 		if (v.is(":last-child")) o.addClass("form-control-last-child");
+		// 	}
 
-			elements.on('input change propertychange blur', function (e) {
-				var $this = $(this), results;
+		// 	elements.on('input change propertychange blur', function (e) {
+		// 		var $this = $(this), results;
 
-				if (e.type !== "blur") if (!$this.parent().hasClass("has-error")) return;
-				if ($this.parents('.rd-mailform').hasClass('success')) return;
+		// 		if (e.type !== "blur") if (!$this.parent().hasClass("has-error")) return;
+		// 		if ($this.parents('.rd-mailform').hasClass('success')) return;
 
-				if (( results = $this.regula('validate') ).length) {
-					for (i = 0; i < results.length; i++) {
-						$this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error");
-					}
-				} else {
-					$this.siblings(".form-validation").text("").parent().removeClass("has-error")
-				}
-			}).regula('bind');
+		// 		if (( results = $this.regula('validate') ).length) {
+		// 			for (i = 0; i < results.length; i++) {
+		// 				$this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error");
+		// 			}
+		// 		} else {
+		// 			$this.siblings(".form-validation").text("").parent().removeClass("has-error")
+		// 		}
+		// 	}).regula('bind');
 
-			var regularConstraintsMessages = [
-				{
-					type: regula.Constraint.Required,
-					newMessage: "The text field is required."
-				},
-				{
-					type: regula.Constraint.Email,
-					newMessage: "The email is not a valid email."
-				},
-				{
-					type: regula.Constraint.Numeric,
-					newMessage: "Only numbers are required"
-				},
-				{
-					type: regula.Constraint.Selected,
-					newMessage: "Please choose an option."
-				}
-			];
+		// 	var regularConstraintsMessages = [
+		// 		{
+		// 			type: regula.Constraint.Required,
+		// 			newMessage: "The text field is required."
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Email,
+		// 			newMessage: "The email is not a valid email."
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Numeric,
+		// 			newMessage: "Only numbers are required"
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Selected,
+		// 			newMessage: "Please choose an option."
+		// 		}
+		// 	];
 
 
-			for (var i = 0; i < regularConstraintsMessages.length; i++) {
-				var regularConstraint = regularConstraintsMessages[i];
+		// 	for (var i = 0; i < regularConstraintsMessages.length; i++) {
+		// 		var regularConstraint = regularConstraintsMessages[i];
 
-				regula.override({
-					constraintType: regularConstraint.type,
-					defaultMessage: regularConstraint.newMessage
-				});
-			}
-		}
+		// 		regula.override({
+		// 			constraintType: regularConstraint.type,
+		// 			defaultMessage: regularConstraint.newMessage
+		// 		});
+		// 	}
+		// }
 
 		/**
 		 * @desc Check if all elements pass validation
@@ -230,99 +230,99 @@
 		 * @param {object} captcha - captcha object for validation
 		 * @return {boolean}
 		 */
-		function isValidated(elements, captcha) {
-			var results, errors = 0;
+		// function isValidated(elements, captcha) {
+		// 	var results, errors = 0;
 
-			if (elements.length) {
-				for (var j = 0; j < elements.length; j++) {
+		// 	if (elements.length) {
+		// 		for (var j = 0; j < elements.length; j++) {
 
-					var $input = $(elements[j]);
-					if ((results = $input.regula('validate')).length) {
-						for (k = 0; k < results.length; k++) {
-							errors++;
-							$input.siblings(".form-validation").text(results[k].message).parent().addClass("has-error");
-						}
-					} else {
-						$input.siblings(".form-validation").text("").parent().removeClass("has-error")
-					}
-				}
+		// 			var $input = $(elements[j]);
+		// 			if ((results = $input.regula('validate')).length) {
+		// 				for (k = 0; k < results.length; k++) {
+		// 					errors++;
+		// 					$input.siblings(".form-validation").text(results[k].message).parent().addClass("has-error");
+		// 				}
+		// 			} else {
+		// 				$input.siblings(".form-validation").text("").parent().removeClass("has-error")
+		// 			}
+		// 		}
 
-				if (captcha) {
-					if (captcha.length) {
-						return validateReCaptcha(captcha) && errors === 0
-					}
-				}
+		// 		if (captcha) {
+		// 			if (captcha.length) {
+		// 				return validateReCaptcha(captcha) && errors === 0
+		// 			}
+		// 		}
 
-				return errors === 0;
-			}
-			return true;
-		}
+		// 		return errors === 0;
+		// 	}
+		// 	return true;
+		// }
 
 		/**
 		 * @desc Validate google reCaptcha
 		 * @param {object} captcha - captcha object for validation
 		 * @return {boolean}
 		 */
-		function validateReCaptcha(captcha) {
-			var captchaToken = captcha.find('.g-recaptcha-response').val();
+		// function validateReCaptcha(captcha) {
+		// 	var captchaToken = captcha.find('.g-recaptcha-response').val();
 
-			if (captchaToken.length === 0) {
-				captcha
-				.siblings('.form-validation')
-				.html('Please, prove that you are not robot.')
-				.addClass('active');
-				captcha
-				.closest('.form-wrap')
-				.addClass('has-error');
+		// 	if (captchaToken.length === 0) {
+		// 		captcha
+		// 		.siblings('.form-validation')
+		// 		.html('Please, prove that you are not robot.')
+		// 		.addClass('active');
+		// 		captcha
+		// 		.closest('.form-wrap')
+		// 		.addClass('has-error');
 
-				captcha.on('propertychange', function () {
-					var $this = $(this),
-							captchaToken = $this.find('.g-recaptcha-response').val();
+		// 		captcha.on('propertychange', function () {
+		// 			var $this = $(this),
+		// 					captchaToken = $this.find('.g-recaptcha-response').val();
 
-					if (captchaToken.length > 0) {
-						$this
-						.closest('.form-wrap')
-						.removeClass('has-error');
-						$this
-						.siblings('.form-validation')
-						.removeClass('active')
-						.html('');
-						$this.off('propertychange');
-					}
-				});
+		// 			if (captchaToken.length > 0) {
+		// 				$this
+		// 				.closest('.form-wrap')
+		// 				.removeClass('has-error');
+		// 				$this
+		// 				.siblings('.form-validation')
+		// 				.removeClass('active')
+		// 				.html('');
+		// 				$this.off('propertychange');
+		// 			}
+		// 		});
 
-				return false;
-			}
+		// 		return false;
+		// 	}
 
-			return true;
-		}
+		// 	return true;
+		// }
 
 		/**
 		 * @desc Initialize Google reCaptcha
 		 */
-		window.onloadCaptchaCallback = function () {
-			for (var i = 0; i < plugins.captcha.length; i++) {
-				var $capthcaItem = $(plugins.captcha[i]);
+		// window.onloadCaptchaCallback = function () {
+		// 	for (var i = 0; i < plugins.captcha.length; i++) {
+		// 		var $capthcaItem = $(plugins.captcha[i]);
 
-				grecaptcha.render(
-						$capthcaItem.attr('id'),
-						{
-							sitekey: $capthcaItem.attr('data-sitekey'),
-							size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
-							theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
-							callback: function (e) {
-								$('.recaptcha').trigger('propertychange');
-							}
-						}
-				);
-				$capthcaItem.after("<span class='form-validation'></span>");
-			}
-		};
+		// 		grecaptcha.render(
+		// 				$capthcaItem.attr('id'),
+		// 				{
+		// 					sitekey: $capthcaItem.attr('data-sitekey'),
+		// 					size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
+		// 					theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
+		// 					callback: function (e) {
+		// 						$('.recaptcha').trigger('propertychange');
+		// 					}
+		// 				}
+		// 		);
+		// 		$capthcaItem.after("<span class='form-validation'></span>");
+		// 	}
+		// };
 
 		// Google ReCaptcha
-		if (plugins.captcha.length) {
-			$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl=en");
-		}
+		// if (plugins.captcha.length) {
+		// 	$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl=en");
+		// }
 
 		// Additional class on html if mac os.
 		if (navigator.platform.match(/(Mac)/i)) {
@@ -440,163 +440,163 @@
 		}
 
 		// RD Input Label
-		if (plugins.rdInputLabel.length) {
-			plugins.rdInputLabel.RDInputLabel();
-		}
+		// if (plugins.rdInputLabel.length) {
+		// 	plugins.rdInputLabel.RDInputLabel();
+		// }
 
 		// Regula
-		if (plugins.regula.length) {
-			attachFormValidator(plugins.regula);
-		}
+		// if (plugins.regula.length) {
+		// 	attachFormValidator(plugins.regula);
+		// }
 
 		// RD Mailform
-		if (plugins.rdMailForm.length) {
-			var i, j, k,
-					msg = {
-						'MF000': 'Successfully sent!',
-						'MF001': 'Recipients are not set!',
-						'MF002': 'Form will not work locally!',
-						'MF003': 'Please, define email field in your form!',
-						'MF004': 'Please, define type of your form!',
-						'MF254': 'Something went wrong with PHPMailer!',
-						'MF255': 'Aw, snap! Something went wrong.'
-					};
+		// if (plugins.rdMailForm.length) {
+		// 	var i, j, k,
+		// 			msg = {
+		// 				'MF000': 'Successfully sent!',
+		// 				'MF001': 'Recipients are not set!',
+		// 				'MF002': 'Form will not work locally!',
+		// 				'MF003': 'Please, define email field in your form!',
+		// 				'MF004': 'Please, define type of your form!',
+		// 				'MF254': 'Something went wrong with PHPMailer!',
+		// 				'MF255': 'Aw, snap! Something went wrong.'
+		// 			};
 
-			for (i = 0; i < plugins.rdMailForm.length; i++) {
-				var $form = $(plugins.rdMailForm[i]),
-						formHasCaptcha = false;
+		// 	for (i = 0; i < plugins.rdMailForm.length; i++) {
+		// 		var $form = $(plugins.rdMailForm[i]),
+		// 				formHasCaptcha = false;
 
-				$form.attr('novalidate', 'novalidate').ajaxForm({
-					data: {
-						"form-type": $form.attr("data-form-type") || "contact",
-						"counter": i
-					},
-					beforeSubmit: function (arr, $form, options) {
-						if (isNoviBuilder)
-							return;
+		// 		$form.attr('novalidate', 'novalidate').ajaxForm({
+		// 			data: {
+		// 				"form-type": $form.attr("data-form-type") || "contact",
+		// 				"counter": i
+		// 			},
+		// 			beforeSubmit: function (arr, $form, options) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-								inputs = form.find("[data-constraints]"),
-								output = $("#" + form.attr("data-form-output")),
-								captcha = form.find('.recaptcha'),
-								captchaFlag = true;
+		// 				var form = $(plugins.rdMailForm[this.extraData.counter]),
+		// 						inputs = form.find("[data-constraints]"),
+		// 						output = $("#" + form.attr("data-form-output")),
+		// 						captcha = form.find('.recaptcha'),
+		// 						captchaFlag = true;
 
-						output.removeClass("active error success");
+		// 				output.removeClass("active error success");
 
-						if (isValidated(inputs, captcha)) {
+		// 				if (isValidated(inputs, captcha)) {
 
-							// veify reCaptcha
-							if (captcha.length) {
-								var captchaToken = captcha.find('.g-recaptcha-response').val(),
-										captchaMsg = {
-											'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-											'CPT002': 'Something wrong with google reCaptcha'
-										};
+		// 					// veify reCaptcha
+		// 					if (captcha.length) {
+		// 						var captchaToken = captcha.find('.g-recaptcha-response').val(),
+		// 								captchaMsg = {
+		// 									'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
+		// 									'CPT002': 'Something wrong with google reCaptcha'
+		// 								};
 
-								formHasCaptcha = true;
+		// 						formHasCaptcha = true;
 
-								$.ajax({
-									method: "POST",
-									url: "bat/reCaptcha.php",
-									data: {'g-recaptcha-response': captchaToken},
-									async: false
-								})
-								.done(function (responceCode) {
-									if (responceCode !== 'CPT000') {
-										if (output.hasClass("snackbars")) {
-											output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
+		// 						$.ajax({
+		// 							method: "POST",
+		// 							url: "bat/reCaptcha.php",
+		// 							data: {'g-recaptcha-response': captchaToken},
+		// 							async: false
+		// 						})
+		// 						.done(function (responceCode) {
+		// 							if (responceCode !== 'CPT000') {
+		// 								if (output.hasClass("snackbars")) {
+		// 									output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
 
-											setTimeout(function () {
-												output.removeClass("active");
-											}, 3500);
+		// 									setTimeout(function () {
+		// 										output.removeClass("active");
+		// 									}, 3500);
 
-											captchaFlag = false;
-										} else {
-											output.html(captchaMsg[responceCode]);
-										}
+		// 									captchaFlag = false;
+		// 								} else {
+		// 									output.html(captchaMsg[responceCode]);
+		// 								}
 
-										output.addClass("active");
-									}
-								});
-							}
+		// 								output.addClass("active");
+		// 							}
+		// 						});
+		// 					}
 
-							if (!captchaFlag) {
-								return false;
-							}
+		// 					if (!captchaFlag) {
+		// 						return false;
+		// 					}
 
-							form.addClass('form-in-process');
+		// 					form.addClass('form-in-process');
 
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
-								output.addClass("active");
-							}
-						} else {
-							return false;
-						}
-					},
-					error: function (result) {
-						if (isNoviBuilder)
-							return;
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
+		// 						output.addClass("active");
+		// 					}
+		// 				} else {
+		// 					return false;
+		// 				}
+		// 			},
+		// 			error: function (result) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
-								form = $(plugins.rdMailForm[this.extraData.counter]);
+		// 				var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
+		// 						form = $(plugins.rdMailForm[this.extraData.counter]);
 
-						output.text(msg[result]);
-						form.removeClass('form-in-process');
+		// 				output.text(msg[result]);
+		// 				form.removeClass('form-in-process');
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
-					},
-					success: function (result) {
-						if (isNoviBuilder)
-							return;
+		// 				if (formHasCaptcha) {
+		// 					grecaptcha.reset();
+		// 				}
+		// 			},
+		// 			success: function (result) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-								output = $("#" + form.attr("data-form-output")),
-								select = form.find('select');
+		// 				var form = $(plugins.rdMailForm[this.extraData.counter]),
+		// 						output = $("#" + form.attr("data-form-output")),
+		// 						select = form.find('select');
 
-						form
-						.addClass('success')
-						.removeClass('form-in-process');
+		// 				form
+		// 				.addClass('success')
+		// 				.removeClass('form-in-process');
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
+		// 				if (formHasCaptcha) {
+		// 					grecaptcha.reset();
+		// 				}
 
-						result = result.length === 5 ? result : 'MF255';
-						output.text(msg[result]);
+		// 				result = result.length === 5 ? result : 'MF255';
+		// 				output.text(msg[result]);
 
-						if (result === "MF000") {
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active success");
-							}
-						} else {
-							if (output.hasClass("snackbars")) {
-								output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active error");
-							}
-						}
+		// 				if (result === "MF000") {
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
+		// 					} else {
+		// 						output.addClass("active success");
+		// 					}
+		// 				} else {
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
+		// 					} else {
+		// 						output.addClass("active error");
+		// 					}
+		// 				}
 
-						form.clearForm();
+		// 				form.clearForm();
 
-						if (select.length) {
-							select.select2("val", "");
-						}
+		// 				if (select.length) {
+		// 					select.select2("val", "");
+		// 				}
 
-						form.find('input, textarea').trigger('blur');
+		// 				form.find('input, textarea').trigger('blur');
 
-						setTimeout(function () {
-							output.removeClass("active error success");
-							form.removeClass('success');
-						}, 3500);
-					}
-				});
-			}
-		}
+		// 				setTimeout(function () {
+		// 					output.removeClass("active error success");
+		// 					form.removeClass('success');
+		// 				}, 3500);
+		// 			}
+		// 		});
+		// 	}
+		// }
 
 		// Custom Toggles
 		if (plugins.customToggle.length) {
