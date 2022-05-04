@@ -3074,7 +3074,7 @@ textarea.form-input {
 	position: relative;
 	overflow: hidden;
 	min-height: 100vh;
-	opacity: 0;
+	opacity: 1;
 }
 
 .page.fadeIn {
@@ -5985,4 +5985,8 @@ html.rd-navbar-fixed-linked header {
 
   .dropdown:hover .dropdown-content {
 	display: block;
+  }
+
+  marquee img{
+	  margin-left: 20px;
   }
