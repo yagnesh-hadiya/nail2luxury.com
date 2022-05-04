@@ -19,14 +19,14 @@
 
 			plugins = {
 				customToggle: $("[data-custom-toggle]"),
-				captcha: $('.recaptcha'),
+				// captcha: $('.recaptcha'),
 				copyrightYear: $(".copyright-year"),
 				owl: $(".owl-carousel"),
-				preloader: $(".preloader"),
+				// preloader: $(".preloader"),
 				rdNavbar: $(".rd-navbar"),
 				// rdMailForm: $(".rd-mailform"),
-				rdInputLabel: $(".form-label"),
-				regula: $("[data-constraints]"),
+				// rdInputLabel: $(".form-label"),
+				// regula: $("[data-constraints]"),
 				wow: $(".wow")
 			};
 
@@ -58,31 +58,31 @@
 	// }
 
 	// Initialize scripts that require a loaded page
-	$window.on('load', function () {
-		// Page loader & Page transition
-		if (plugins.preloader.length && !isNoviBuilder) {
-			pageTransition({
-				target: document.querySelector('.page'),
-				delay: 0,
-				duration: 100, 
-				classIn: 'fadeIn',
-				classOut: 'fadeOut',
-				classActive: 'animated',
-				conditions: function (event, link) {
-					return !/(\#|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
-				},
-				onTransitionStart: function (options) {
-					setTimeout(function () {
-						plugins.preloader.removeClass('loaded');
-					}, options.duration * .10);
-				},
-				onReady: function () {
-					plugins.preloader.addClass('loaded');
-					windowReady = true;
-				}
-			});
-		}
-	});
+	// $window.on('load', function () {
+	// 	// Page loader & Page transition
+	// 	if (plugins.preloader.length && !isNoviBuilder) {
+	// 		pageTransition({
+	// 			target: document.querySelector('.page'),
+	// 			delay: 0,
+	// 			duration: 100, 
+	// 			classIn: 'fadeIn',
+	// 			classOut: 'fadeOut',
+	// 			classActive: 'animated',
+	// 			conditions: function (event, link) {
+	// 				return !/(\#|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
+	// 			},
+	// 			onTransitionStart: function (options) {
+	// 				setTimeout(function () {
+	// 					plugins.preloader.removeClass('loaded');
+	// 				}, options.duration * .10);
+	// 			},
+	// 			onReady: function () {
+	// 				plugins.preloader.addClass('loaded');
+	// 				windowReady = true;
+	// 			}
+	// 		});
+	// 	}
+	// });
 
 	// Initialize scripts that require a finished document
 	$(function () {
